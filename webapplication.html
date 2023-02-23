@@ -1,0 +1,125 @@
+<html ng-app="webApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js" type="text/javascript"></script>
+    <script src="http://metawidget.org/js/4.2/metawidget-core.min.js" type="text/javascript"></script>
+    <script src="http://metawidget.org/js/4.2/metawidget-angular.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+    <!-- Mapped Objects created using Metawidget with custom inspectors and sections-->
+    <script type="text/javascript">
+      angular.module('webApp', ['metawidget']).controller('webController', function($scope) {
+        $scope.metawidgetConfig = {
+          inspector: new metawidget.inspector.JsonSchemaInspector({
+            properties: {
+              Name: {
+                type: 'string',
+                section: "Pesonal Details:",
+              },
+              Surname: {
+                type: 'string',
+              },
+              Email: {
+                type: 'string',
+              },
+              Phone: {
+                type: 'string',
+              },
+              Age: {
+                type: 'number',
+                minimum: 0,
+              },
+              Qualifications: {
+                type: "string",
+                large: true,
+                section: "Work Experience:",
+              },
+              PastJobExperience: {
+                type: 'string',
+                large: true
+              },
+              CurrentJob: {
+                type: 'string',
+                large: true
+              },
+              UploadResume: {}
+            }
+          })
+        }
+
+        // Console Log to save data
+        $scope.save = function() {
+          console.log($scope.figure);
+        }
+      });
+    </script>
+
+    <!-- CSS -->
+    <style>
+      body {
+        background-color: #AFEEEE;
+      }
+
+      h1 {
+        font-family: "Raleway", sans-serif
+      }
+
+      #metawidget {
+        display: block;
+        border-style: groove;
+        border: 1px solid #cccccc;
+        width: 850px;
+        height: 500px;
+        background-color: #F5FFFA;
+        border-radius: 70px;
+        padding: 11px;
+        margin: 50px auto;
+        display: block;
+        font-family: 'Actor';
+        text-indent: 120px;
+        letter-spacing: 2px;
+      }
+
+      #metawidget button {
+        background-color: white;
+        border: none;
+        color: black;
+        padding: 6px 32px;
+        text-align: center;
+        font-size: 16px;
+        margin: 80px 270px;
+        cursor: pointer;
+      }
+
+      video {
+        height: 40%;
+        width: 40%;
+      }
+
+      form {
+        float: right;
+      }
+    </style>
+  </head>
+
+  <!-- User Interface -->
+  <body ng-controller="webController">
+    <header class="w3-container w3-center w3-padding-32">
+      <h1>
+        <b>JOB INTEREST FORM</b>
+      </h1>
+      <p>Welcome, please fill the job interest form below for <span class="w3-tag">Insignia Financial</span>
+      </p>
+      <video playsinline autoplay muted loop poster="work.jpg">
+        <source src="https://res.cloudinary.com/du7h0crts/video/upload/v1657847595/Laptop_-_61037_rzotho.mp4" type="video/webm">
+      </video>
+      <metawidget id="metawidget" ng-model="figure" config="metawidgetConfig">
+        <form action="/action_page.php">
+          <input type="file" id="myFile" name="filename">
+        </form>
+        <p>
+          <button ng-click="save()">Save</button>
+      </metawidget>
+    </header>
+  </body>
+</html>
